@@ -71,21 +71,44 @@ const render = (data) => {
   });
 }
 
-// const getData = async () => {
-//   const response = await fetch('https://rickandmortyapi.com/api/character')
-//   const characters = await response.json()
-//   console.log(characters.results)
-//   render(characters.results)
-// }
-const getData = () => {
-  fetch('https://rickandmortyapi.com/api/character')
-    .then(response => response.json())
-    .then(result => {
-      console.log(result)
-      render(result.results)
-    })
-  // const characters =  response.json()
-  // console.log(characters.results)
+const getData = async () => {
+  const response = await fetch('https://rickandmortyapi.com/api/character')
+  const { results } = await response.json()
+  console.log(results)
+  render(results)
 }
+// const getData = () => {
+//   fetch('https://rickandmortyapi.com/api/character')
+//     .then(response => response.json())
+//     .then(result => {
+//       console.log(result)
+//       render(result.results)
+//     })
+//   // const characters =  response.json()
+//   // console.log(characters.results)
+// }
 
 getData()
+
+
+
+
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function uppercaseString(s) {
+  // tu código va aquí
+  await sleep(500)
+  let result = '';
+  s.split('').forEach(letra => {
+    if (letra === letra.toUpperCase()) {
+      result += letra
+    }
+  })
+  return result;
+}
+
+uppercaseString("eDwArD").then(console.log);
+
